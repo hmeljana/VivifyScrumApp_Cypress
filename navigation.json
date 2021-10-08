@@ -1,0 +1,39 @@
+{
+"header" : {
+    "goToHomeScreenLogo" : ".vs-c-site-logo",
+    "showSearchButton" : ".vs-c-project-search .vs-c-btn",
+    "hideSearchButton" : ".vs-is-active .vs-c-btn",
+    "searchInput" : ".vs-c-project-search__input input[type='text']",
+
+    "showNotificationsButton" : ".el-badge .vs-c-btn",
+    "showAllNotifications" : "span[class='vs-c-notifications-show-all vs-u-cursor--pointer']",
+    "notificationSettings" : ".vs-u-display--flex span[title='Notification Settings']",
+
+    "howItWorksButton" : ".vs-l-project__options > .el-tooltip.vs-c-btn.vs-c-btn--link"
+},
+
+
+"loginRegisterModals" : {
+    "modalTitle" : ".vs-c-modal__body h1",
+    "emailInput" : "input[type='email']",
+    "passwordInput" : "input[type='password']",
+    "submitButton" : ".vs-u-text--left button[type='submit']",
+    "errorMessage" : ".vs-c-form-item__error-wrapper .el-form-item-error--top",
+    "loginViaGoogle" : ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--gp",
+    "loginViaFB" : ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--fb",
+    "loginViaTwitter" : ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--tw",
+    "loginViaRegzen" : ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--regzen"
+},
+
+"createOrgBoardModals" : {
+    "modalTitle" : "h2.vs-c-modal__title",
+    "nameInput" : ".el-form-item input[type='text']",
+    "backButton" : "button[name='prev_btn']",
+    "nextButton" : "button[name='next_btn']",
+    "page1" : ".vs-c-dot-pagination > li:nth-of-type(1)",
+    "page2" : ".vs-c-dot-pagination > li:nth-of-type(2)",
+    "uploadLogo" : ".el-upload-dragger",
+    "closeModalButton" : "button.vs-c-close-modal"
+}
+
+}

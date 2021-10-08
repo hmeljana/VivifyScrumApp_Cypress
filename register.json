@@ -1,0 +1,9 @@
+{
+    "backToPricing" : ".vs-u-gap--bottom a[href='https://cypress-api.vivifyscrum-stage.com/pricing']",
+    "showHidePassword" : ".el-input button[type='button']",
+    "numberOfUsers" : ".el-input input[placeholder='Number of people in your team (51-100)']",
+    "checkbox" : "span[class='vs-c-checkbox-check']",
+    "goToLoginLink" : "a[href='/login']",
+    "pricingPlanMonthlyOption" : ".vs-c-switch-pricing-plan-option p"
+
+}
