@@ -6,9 +6,11 @@
   "dependencies": {
     "cypress": "^8.5.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "2.4.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cypress": "./node_modules/.bin/cypress open"
   },
   "repository": {
     "type": "git",

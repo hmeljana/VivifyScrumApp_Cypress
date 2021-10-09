@@ -18,11 +18,15 @@
     "emailInput" : "input[type='email']",
     "passwordInput" : "input[type='password']",
     "submitButton" : ".vs-u-text--left button[type='submit']",
-    "errorMessage" : ".vs-c-form-item__error-wrapper .el-form-item-error--top",
+    "errorMessageEmptyField" : ".vs-c-form-item__error-wrapper .el-form-item-error--top",
+    "errorMessageWrongPassword" : ".vs-c-custom-errors .el-form-item__error",
     "loginViaGoogle" : ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--gp",
     "loginViaFB" : ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--fb",
     "loginViaTwitter" : ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--tw",
-    "loginViaRegzen" : ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--regzen"
+    "loginViaRegzen" : ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--regzen",
+    "profileIcon" : ".vs-l-sidebar__user",
+    "goToProfileSettings" : "a[href='/account/settings']",
+    "logoutButton" : ".vs-c-logout"
 },
 
 "createOrgBoardModals" : {
