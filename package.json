@@ -1,0 +1,23 @@
+{
+  "name": "vivifyscrumapp_cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cypress": "^8.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hmeljana/VivifyScrumApp_Cypress.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hmeljana/VivifyScrumApp_Cypress/issues"
+  },
+  "homepage": "https://github.com/hmeljana/VivifyScrumApp_Cypress#readme"
+}
