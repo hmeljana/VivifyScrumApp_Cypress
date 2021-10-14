@@ -1,58 +1,62 @@
-/// <reference types="Cypress" />
-import loginPage from '../fixtures/login.json';
-import navigation from '../fixtures/navigation.json';
-import data from '../fixtures/data.json'
+/// <reference types="cypress" / >
+import common from "../fixtures/common.json";
+import data from "../fixtures/data.json";
 
-describe('login', () => {
-    // it('first test', () => {
-    //     expect(true).to.eq(true);
-    // });
+describe("Login", () => {
+	it("Visit VivifyScrum", () => {
+		cy.visit("/", { timeout: 30000 });
+	});
 
-    // it('first test', () => {
-    //     expect(true).to.eq(false);
-    // });
+	it("Invalid Login - Empty email", () => {
+		cy.get(common.loginRegisterModals.passwordInput).type(data.user1.password);
+		cy.get(common.loginRegisterModals.submitButton).click();
+		cy.url().should("contain", "/login");
+		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible");
+	});
 
-    it('visit vivify scrum', () => {
-        cy.visit("/", { timeout: 30000 });
-    });
+	it("Invalid Login - Wrong email", () => {
+		cy.get(common.loginRegisterModals.emailInput).type(data.user3.email);
+		cy.get(common.loginRegisterModals.passwordInput).type(data.user1.password);
+		cy.get(common.loginRegisterModals.submitButton).click();
+		cy.url().should("contain", "/login");
+		cy.get(common.loginRegisterModals.errorMessageWrongPassword).should("be.visible");
+	});
 
-    it('invalid login - no email', () => {
-        cy.get(navigation.loginRegisterModals.passwordInput).type(data.user.password);
-        cy.get(navigation.loginRegisterModals.submitButton).click();
-        cy.url().should("contain", "/login");
-        cy.get(navigation.loginRegisterModals.errorMessageEmptyField).should("be.visible");
-    });
+	it("Invalid Login - Non-existing email", () => {
+		cy.get(common.loginRegisterModals.emailInput).clear().type("ana.antic@gmail.com");
+		cy.get(common.loginRegisterModals.passwordInput).type(data.user1.password);
+		cy.get(common.loginRegisterModals.submitButton).click();
+		cy.url().should("contain", "/login");
+		cy.get(common.loginRegisterModals.errorMessageWrongPassword).should("be.visible");
+	});
 
-    it('invalid login - no password', () => {
-        cy.get(navigation.loginRegisterModals.passwordInput).clear();
-        cy.get(navigation.loginRegisterModals.emailInput).type(data.user.email);
-        cy.get(navigation.loginRegisterModals.submitButton).click();
-        cy.url().should("contain", "/login");
-        cy.get(navigation.loginRegisterModals.errorMessageEmptyField).should("be.visible");
-    });
+	it("Invalid Login - Empty password", () => {
+		cy.get(common.loginRegisterModals.emailInput).clear().type(data.user1.email);
+		cy.get(common.loginRegisterModals.passwordInput).clear();
+		cy.get(common.loginRegisterModals.submitButton).click();
+		cy.url().should("contain", "/login");
+		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible");
+	});
 
-    it('invalid login - wrong password', () => {
-        cy.get(navigation.loginRegisterModals.emailInput).clear().type(data.user.email);
-        cy.get(navigation.loginRegisterModals.passwordInput).clear().type("blabla");;
-        cy.get(navigation.loginRegisterModals.submitButton).click();
-        cy.url().should("contain", "/login");
-        cy.get(navigation.loginRegisterModals.errorMessageWrongPassword).should("be.visible");
-        //fali error message getter za pogresnu lozinku
-    });
+	it("Invalid Login - Wrong password", () => {
+		cy.get(common.loginRegisterModals.emailInput).clear().type(data.user1.email);
+		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.user3.password);
+		cy.get(common.loginRegisterModals.submitButton).click();
+		cy.url().should("contain", "/login");
+		cy.get(common.loginRegisterModals.errorMessageWrongPassword).should("be.visible");
+	});
 
-    it('valid login', () => {
-        cy.get(navigation.loginRegisterModals.emailInput).clear().type(data.user.email);
-        cy.get(navigation.loginRegisterModals.passwordInput).clear().type(data.user.password);
-        cy.get(navigation.loginRegisterModals.submitButton).click();
-        cy.url().should("not.contain", "/login");
+	it("Valid Login", () => {
+		cy.get(common.loginRegisterModals.emailInput).clear().type(data.user1.email);
+		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.user1.password);
+		cy.get(common.loginRegisterModals.submitButton).click();
+		cy.url().should("not.contain", "/login");
+	});
 
-    });
-
-    it('logout', () => {
-        cy.get(navigation.loginRegisterModals.profileIcon).click();
-        cy.get(navigation.loginRegisterModals.goToProfileSettings).click();
-        cy.get(navigation.loginRegisterModals.logoutButton).click();
-        cy.url().should("contain", "/login");
-    })
-
-})
+	it("Logout", () => {
+		cy.get(common.loginRegisterModals.profileIcon).click();
+		cy.get(common.loginRegisterModals.goToProfileSettings).click();
+		cy.get(common.loginRegisterModals.logoutButton).click();
+		cy.url().should("contain", "/login");
+	});
+});

@@ -1,6 +1,20 @@
 {
-    "user" : {
-        "email" : "nikolovskabokica11@gmail.com",
-        "password" : "bokica"
-    }
+	"user1": {
+		"name": "Ana",
+		"lastName": "Andric",
+		"email": "anaa77@gmail.com",
+		"password": "123456"
+	},
+	"user2": {
+		"name": "Dragan",
+		"lastName": "Nikolic",
+		"email": "drnikolic@gmail.com",
+		"password": "abcdef"
+	},
+	"user3": {
+		"name": "Nevena",
+		"lastName": "Peric",
+		"email": "nev@gmail.com",
+		"password": "123abc"
+	}
 }
