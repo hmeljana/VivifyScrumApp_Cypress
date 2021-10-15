@@ -1,20 +1,43 @@
 {
-	"user1": {
-		"name": "Ana",
-		"lastName": "Andric",
-		"email": "anaa77@gmail.com",
-		"password": "123456"
+	"users": {
+		"user1": {
+			"name": "Ana",
+			"lastName": "Andric",
+			"email": "anaa77@gmail.com",
+			"password": "123456",
+			"numberOfUsers": "60"
+		},
+		"user2": {
+			"name": "Dragan",
+			"lastName": "Nikolic",
+			"email": "dragannikolic@gmail.com",
+			"password": "abcdef"
+		},
+		"user3": {
+			"name": "Nevena",
+			"lastName": "Peric",
+			"email": "nev@gmail.com",
+			"password": "123abc"
+		},
+
+		"invalidUser": {
+			"name": "",
+			"lastName": "",
+			"noDomainEmail": "ana@",
+			"noTopLevelDomainEmail": "ana@gmail",
+			"nonExistingEmail": "svetlana.peric123@gmail.com",
+			"invalidNumberofUsers1": "50",
+			"invalidNumberOfUsers2": "101"
+		}
 	},
-	"user2": {
-		"name": "Dragan",
-		"lastName": "Nikolic",
-		"email": "drnikolic@gmail.com",
-		"password": "abcdef"
+
+	"organization": {
+		"name1": "Organizacija 1",
+		"name2": "Organizacija 2",
+		"newName": "Nova Organizacija 1"
 	},
-	"user3": {
-		"name": "Nevena",
-		"lastName": "Peric",
-		"email": "nev@gmail.com",
-		"password": "123abc"
+
+	"board": {
+		"name1": "Board1"
 	}
 }

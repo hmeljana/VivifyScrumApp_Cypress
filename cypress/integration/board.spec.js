@@ -7,8 +7,8 @@ import data from "../fixtures/data.json";
 describe("Board", () => {
 	it("Login", () => {
 		cy.visit("/");
-		cy.get(common.loginRegisterModals.emailInput).clear().type(data.user1.email);
-		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.user1.password);
+		cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user1.email);
+		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user1.password);
 		cy.get(common.loginRegisterModals.submitButton).click();
 		cy.url().should("contain", "/my-organizations");
 	});
@@ -16,7 +16,7 @@ describe("Board", () => {
 	it("Add New Organization - Successfully", () => {
 		cy.get(sidebar.addNew.addIconHover).click();
 		cy.get(sidebar.addNew.addOrganization).click();
-		cy.get(common.createOrgBoardModals.nameInput).type("Organizacija 2");
+		cy.get(common.createOrgBoardModals.nameInput).type(data.organization.name2);
 		cy.get(common.createOrgBoardModals.nextButton).click();
 		cy.get(common.createOrgBoardModals.nextButton).click();
 		cy.get(common.createOrgBoardModals.closeModalButton).click();
@@ -29,7 +29,7 @@ describe("Board", () => {
 		cy.get(sidebar.addNew.addBoard).click();
 		cy.get(createBoard.selectOrg).click();
 		cy.get(createBoard.dropdownOrgOption).click();
-		cy.get(common.createOrgBoardModals.nameInput).clear().type("Board 1");
+		cy.get(common.createOrgBoardModals.nameInput).clear().type(data.board.name1);
 		cy.get(common.createOrgBoardModals.nextButton).click();
 		cy.get(createBoard.boardTypeScrum).click();
 		cy.get(common.createOrgBoardModals.nextButton).click();
