@@ -87,29 +87,29 @@ describe("Register", () => {
 		cy.url().should("not.contain", "/my-organizations");
 	});
 
-	it("Valid  Registration", () => {
-		cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user2.email);
-		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
-		cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
-		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.url().should("contain", "/my-organizations");
-	});
+	// it("Valid  Registration", () => {
+	// 	cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user2.email);
+	// 	cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
+	// 	cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
+	// 	cy.get(common.loginRegisterModals.submitButton).click();
+	// 	cy.url().should("contain", "/my-organizations");
+	// });
 
-	it("Logout", () => {
-		cy.get(common.loginRegisterModals.profileIcon).click({ timeout: 30000 });
-		cy.get(registration.accountDetails.cancelButton).click({ timeout: 30000 });
-		cy.get(common.loginRegisterModals.goToProfileSettings).click({ timeout: 30000 });
-		cy.get(registration.accountDetails.cancelButton).click({ timeout: 30000 });
-		cy.get(common.loginRegisterModals.logoutButton).click({ timeout: 30000 });
-		cy.url().should("contain", "/login");
-	});
+	// it("Logout", () => {
+	// 	cy.get(common.loginRegisterModals.profileIcon).click({ timeout: 30000 });
+	// 	cy.get(registration.accountDetails.cancelButton).click({ timeout: 30000 });
+	// 	cy.get(common.loginRegisterModals.goToProfileSettings).click({ timeout: 30000 });
+	// 	cy.get(registration.accountDetails.cancelButton).click({ timeout: 30000 });
+	// 	cy.get(common.loginRegisterModals.logoutButton).click({ timeout: 30000 });
+	// 	cy.url().should("contain", "/login");
+	// });
 
-	it("Valid Login with New Account", () => {
-		cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user2.email);
-		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
-		cy.get(loginPage.loginButton).click();
-		cy.url().should("contain", "/my-organizations");
-	});
+	// it("Valid Login with New Account", () => {
+	// 	cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user2.email);
+	// 	cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
+	// 	cy.get(loginPage.loginButton).click();
+	// 	cy.url().should("contain", "/my-organizations");
+	// });
 
 	//Ponasa se drugacije kada prolazim manuelno i na testovima
 	//koje pokrene cypress ovaj modal za Account details:
