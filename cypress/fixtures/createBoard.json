@@ -1,0 +1,12 @@
+{
+	"selectOrg": ".el-input input",
+	"dropdownOrgOption": "li.vs-c-select-dropdown__item",
+	"page3": ".vs-c-dot-pagination > li:nth-of-type(3)",
+	"page4": ".vs-c-dot-pagination > li:nth-of-type(4)",
+	"page5": ".vs-c-dot-pagination > li:nth-of-type(5)",
+	"boardTypeScrum": ".vs-c-radio span[name='type_scrum']",
+	"boardTypeKanban": ".vs-c-radio span[name='type_kanban']",
+	"importConfigFrom": "div:nth-of-type(1) > .vs-input-border > .el-select.vs-c-new-board-select > .el-input > .el-input__inner",
+	"configFromDetailsHover": ".vs-c-new-board-tooltip",
+	"imortTeamMembersFrom": "div:nth-of-type(2) > .vs-input-border > .el-select.vs-c-new-board-select > .el-input > .el-input__inner"
+}

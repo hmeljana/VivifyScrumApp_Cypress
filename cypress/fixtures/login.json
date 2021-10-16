@@ -1,0 +1,7 @@
+{
+	"backToHomeLink": ".vs-u-gap--bottom-lg a[href='https://cypress-api.vivifyscrum-stage.com']",
+	"forgotPasswordLink": "a[href='/forgot-password']",
+	"loginButton": ".vs-l-login-page .vs-c-btn--primary",
+	"backToLogin": ".vs-u-gap--bottom a[href='/login']",
+	"goToSignUpLink": "a[href='https://cypress-api.vivifyscrum-stage.com/pricing']"
+}

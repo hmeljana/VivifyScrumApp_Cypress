@@ -1,0 +1,20 @@
+{
+	"expandSidebar": "div.vs-c-list__item",
+	"collapseSidebar": "div.vs-c-list__item .vs-c-sidebar-info",
+
+	"addNew": {
+		"addIconHover": ".vb-content > .vs-c-list:nth-child(1) .vs-c-list__btn",
+		"addOrganization": "li:nth-of-type(1) > a > span",
+		"addBoard": "li:nth-of-type(2) > a > span",
+		"importBoard": "li:nth-of-type(3) > a > span"
+	},
+
+	"myOrganization": {
+		"myOrganizationLink": ".vs-c-list__item .vs-c-list__organisation",
+		"expandMyOrganization": "button[slot='toggle-button']",
+		"myBoard": ".vs-c-list--boards li[data-type='board']",
+		"starBoard": ".vs-c-list__item-board .vs-c-list__btn .vs-c-icon",
+		"addBoardIconHover": ".vs-c-list-btn--add-new",
+		"addNewBoard": "div:nth-of-type(14) .vs-c-list a"
+	}
+}
