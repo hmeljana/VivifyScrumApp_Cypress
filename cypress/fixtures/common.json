@@ -19,12 +19,13 @@
 		"submitButton": ".vs-u-text--left > .vs-c-btn",
 		"errorMessageEmptyField": ".vs-c-form-item__error-wrapper .el-form-item-error--top",
 		"errorMessageWrongPassword": ".vs-c-custom-errors .el-form-item__error",
+		"existingAccountError": ".el-message",
 		"loginViaGoogle": ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--gp",
 		"loginViaFB": ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--fb",
 		"loginViaTwitter": ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--tw",
 		"loginViaRegzen": ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--regzen",
-		"profileIcon": ".vs-l-sidebar__user",
-		"goToProfileSettings": "a[href='/account/settings']",
+		"profileIcon": ".vs-u-img--round",
+		"goToProfileSettings": "[data-cy='account-profile'] ",
 		"logoutButton": ".vs-c-logout"
 	},
 

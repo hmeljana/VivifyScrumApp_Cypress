@@ -1,25 +1,25 @@
 {
-  "name": "vivifyscrumapp_cypress",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "dependencies": {
-    "cypress": "^8.6.0"
-  },
-  "devDependencies": {
-    "prettier": "2.4.1"
-  },
-  "scripts": {
-    "cypress": "./node_modules/.bin/cypress open"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hmeljana/VivifyScrumApp_Cypress.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/hmeljana/VivifyScrumApp_Cypress/issues"
-  },
-  "homepage": "https://github.com/hmeljana/VivifyScrumApp_Cypress#readme"
+	"name": "vivifyscrumapp_cypress",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"dependencies": {
+		"cypress": "^8.6.0"
+	},
+	"devDependencies": {
+		"prettier": "2.4.1"
+	},
+	"scripts": {
+		"cypress:open": "./node_modules/.bin/cypress open"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hmeljana/VivifyScrumApp_Cypress.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/hmeljana/VivifyScrumApp_Cypress/issues"
+	},
+	"homepage": "https://github.com/hmeljana/VivifyScrumApp_Cypress#readme"
 }
