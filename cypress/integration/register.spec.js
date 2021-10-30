@@ -1,16 +1,17 @@
-/// <reference types="Cypress" />
+/// <reference types = "cypress" / >
 import loginPage from "../fixtures/login.json";
 import common from "../fixtures/common.json";
 import registration from "../fixtures/register.json";
 import data from "../fixtures/data.json";
+import errorMessages from "../fixtures/errorMessages.json";
+import strings from "../fixtures/strings.json";
 
 describe("Register", () => {
-	it("visit", () => {
+	before("Visit url", () => {
 		cy.visit("/");
+		cy.url().should("contain", "cypress.vivifyscrum-stage.com");
 		cy.get(loginPage.goToSignUpLink).click();
-	});
-
-	it("Open Registration Modal", () => {
+		cy.url().should("contain", "/pricing", { timeout: 3000 });
 		cy.get(" a[title='Growth']").eq(0).click({ force: true });
 	});
 
@@ -18,7 +19,7 @@ describe("Register", () => {
 		cy.get(common.loginRegisterModals.passwordInput).type(data.users.user2.password);
 		cy.get(registration.numberOfUsers).type(data.users.user1.numberOfUsers);
 		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible");
+		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.invalidEmail);
 	});
 
 	it("Invalid Registration - Invalid email 1", () => {
@@ -26,7 +27,7 @@ describe("Register", () => {
 		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
 		cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
 		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible");
+		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.invalidEmail);
 	});
 
 	it("Invalid Registration - Invalid email 2", () => {
@@ -34,7 +35,7 @@ describe("Register", () => {
 		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
 		cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
 		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible");
+		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.invalidEmail);
 	});
 
 	it("Invalid Registration - Empty password", () => {
@@ -42,7 +43,7 @@ describe("Register", () => {
 		cy.get(common.loginRegisterModals.passwordInput).clear();
 		cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
 		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible");
+		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.requiredPassword);
 	});
 
 	it("Invalid  Registration - Empty Number of Users", () => {
@@ -50,7 +51,7 @@ describe("Register", () => {
 		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
 		cy.get(registration.numberOfUsers).clear();
 		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible");
+		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.requiredNumberOfUsers);
 	});
 
 	it("Invalid  Registration - Number of Users less than 51", () => {
@@ -58,7 +59,7 @@ describe("Register", () => {
 		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
 		cy.get(registration.numberOfUsers).clear().type(data.users.invalidUser.invalidNumberofUsers1);
 		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible");
+		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.invalidNumberOfUsers);
 	});
 
 	it("Invalid  Registration - Number of Users greater than 100", () => {
@@ -66,7 +67,7 @@ describe("Register", () => {
 		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
 		cy.get(registration.numberOfUsers).clear().type(data.users.invalidUser.invalidNumberOfUsers2);
 		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible");
+		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.invalidNumberOfUsers);
 	});
 
 	it("Invalid  Registration - User doesn't agree with terms & policy", () => {
@@ -75,7 +76,7 @@ describe("Register", () => {
 		cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
 		cy.get(registration.checkbox).click();
 		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible");
+		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.termsAndPrivacy);
 	});
 
 	it("Invalid  Registration - Existing account", () => {
@@ -84,24 +85,29 @@ describe("Register", () => {
 		cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
 		cy.get(registration.checkbox).click();
 		cy.get(common.loginRegisterModals.submitButton).click();
+		cy.get(common.loginRegisterModals.existingAccountError).should("be.visible").and("have.text", errorMessages.existingEmail);
 		cy.url().should("not.contain", "/my-organizations");
 	});
 
-	// it("Valid  Registration", () => {
+	// it.only("Valid  Registration", () => {
+	// 	cy.intercept("POST", "api/v2/register").as("registeredUser");
 	// 	cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user2.email);
 	// 	cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
 	// 	cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
 	// 	cy.get(common.loginRegisterModals.submitButton).click();
+	// 	cy.wait(3000);
 	// 	cy.url().should("contain", "/my-organizations");
+	// 	cy.wait("@registeredUser").then((intercept) => {
+	// 		expect(intercept.response.statusCode).to.eq(200);
+	// 	})
 	// });
 
-	// it("Logout", () => {
+	// after("Logout", () => {
 	// 	cy.get(common.loginRegisterModals.profileIcon).click({ timeout: 30000 });
-	// 	cy.get(registration.accountDetails.cancelButton).click({ timeout: 30000 });
 	// 	cy.get(common.loginRegisterModals.goToProfileSettings).click({ timeout: 30000 });
-	// 	cy.get(registration.accountDetails.cancelButton).click({ timeout: 30000 });
 	// 	cy.get(common.loginRegisterModals.logoutButton).click({ timeout: 30000 });
 	// 	cy.url().should("contain", "/login");
+	// 	cy.get(common.loginRegisterModals.modalTitle).should("have.text", strings.modalTitle);
 	// });
 
 	// it("Valid Login with New Account", () => {
