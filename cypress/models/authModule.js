@@ -67,8 +67,4 @@ module.exports = {
 			expect(intercept.response.statusCode).to.eq(201);
 		});
 	},
-
-	// get loginButton() {
-	// 	return cy.get(".vs-l-login-page .vs-c-btn--primary");
-	// },
 };

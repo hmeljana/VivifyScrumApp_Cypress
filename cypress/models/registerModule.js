@@ -4,7 +4,7 @@ import sidebar from "./sidebarModule";
 import navigation from "./navigationModule";
 import faker from "faker";
 
-let fakerUser = {
+const fakerUser = {
 	email: faker.internet.email(),
 	password: faker.internet.password(),
 };
@@ -79,18 +79,4 @@ module.exports = {
 			this.submitButton.should("be.visible").click();
 		}
 	},
-
-	// logout() {
-	// 	cy.intercept("POST", "**api/v2/logout").as("logout");
-	// 	sidebar.profileIcon.should("be.visible").click();
-	// 	sidebar.goToProfileSettings.should("be.visible").click();
-	// 	navigation.logoutButton.should("be.visible").click();
-	// 	cy.wait("@logout").then((intercept) => {
-	// 		expect(intercept.response.statusCode).to.eq(201);
-	// 	});
-	// },
-
-	// get loginButton() {
-	// 	return cy.get(".vs-l-login-page .vs-c-btn--primary");
-	// },
 };
