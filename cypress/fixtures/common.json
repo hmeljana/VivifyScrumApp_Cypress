@@ -20,6 +20,7 @@
 		"errorMessageEmptyField": ".vs-c-form-item__error-wrapper .el-form-item-error--top",
 		"errorMessageWrongPassword": ".vs-c-custom-errors .el-form-item__error",
 		"existingAccountError": ".el-message",
+		"nonExistingAccountError": "cy.get('.vs-c-custom-errors > .el-form-item__error')",
 		"loginViaGoogle": ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--gp",
 		"loginViaFB": ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--fb",
 		"loginViaTwitter": ".vs-c-auth-modal__body-social-wrapper .vs-c-btn--tw",

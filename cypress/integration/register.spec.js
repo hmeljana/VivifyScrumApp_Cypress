@@ -5,9 +5,10 @@ import registration from "../fixtures/register.json";
 import data from "../fixtures/data.json";
 import errorMessages from "../fixtures/errorMessages.json";
 import strings from "../fixtures/strings.json";
+import registrationModule from "../models/registerModule";
 
 describe("Register", () => {
-	before("Visit url", () => {
+	beforeEach("Visit url", () => {
 		cy.visit("/");
 		cy.url().should("contain", "cypress.vivifyscrum-stage.com");
 		cy.get(loginPage.goToSignUpLink).click();
@@ -16,91 +17,67 @@ describe("Register", () => {
 	});
 
 	it("Invalid Registration - Empty email", () => {
-		cy.get(common.loginRegisterModals.passwordInput).type(data.users.user2.password);
-		cy.get(registration.numberOfUsers).type(data.users.user1.numberOfUsers);
-		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.invalidEmail);
+		registrationModule.register({ email: "" });
+		cy.url().should("contain", "/sign-up");
+		registrationModule.errorMessageEmptyField.should("have.text", errorMessages.invalidEmail);
 	});
 
-	it("Invalid Registration - Invalid email 1", () => {
-		cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.invalidUser.noDomainEmail);
-		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
-		cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
-		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.invalidEmail);
+	it("Invalid Registration - No domain email", () => {
+		registrationModule.register({ email: data.users.invalidUser.noDomainEmail });
+		cy.url().should("contain", "/sign-up");
+		registrationModule.errorMessageEmptyField.should("have.text", errorMessages.invalidEmail);
 	});
 
-	it("Invalid Registration - Invalid email 2", () => {
-		cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.invalidUser.noTopLevelDomainEmail);
-		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
-		cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
-		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.invalidEmail);
+	it("Invalid Registration - No top level domain email", () => {
+		registrationModule.register({ email: data.users.invalidUser.noTopLevelDomainEmail });
+		cy.url().should("contain", "/sign-up");
+		registrationModule.errorMessageEmptyField.should("have.text", errorMessages.invalidEmail);
 	});
 
 	it("Invalid Registration - Empty password", () => {
-		cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user2.email);
-		cy.get(common.loginRegisterModals.passwordInput).clear();
-		cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
-		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.requiredPassword);
+		registrationModule.register({ password: "" });
+		cy.url().should("contain", "/sign-up");
+		registrationModule.errorMessageWrongPassword.should("have.text", errorMessages.requiredPassword);
 	});
 
 	it("Invalid  Registration - Empty Number of Users", () => {
-		cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user2.email);
-		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
-		cy.get(registration.numberOfUsers).clear();
-		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.requiredNumberOfUsers);
+		registrationModule.register({ numberOfUsers: "" });
+		cy.url().should("contain", "/sign-up");
+		registrationModule.errorMessageEmptyField.should("have.text", errorMessages.requiredNumberOfUsers);
 	});
 
 	it("Invalid  Registration - Number of Users less than 51", () => {
-		cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user2.email);
-		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
-		cy.get(registration.numberOfUsers).clear().type(data.users.invalidUser.invalidNumberofUsers1);
-		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.invalidNumberOfUsers);
+		registrationModule.register({ numberOfUsers: data.users.invalidUser.invalidNumberofUsers1 });
+		cy.url().should("contain", "/sign-up");
+		registrationModule.errorMessageEmptyField.should("have.text", errorMessages.invalidNumberOfUsers);
 	});
 
 	it("Invalid  Registration - Number of Users greater than 100", () => {
-		cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user2.email);
-		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
-		cy.get(registration.numberOfUsers).clear().type(data.users.invalidUser.invalidNumberOfUsers2);
-		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.invalidNumberOfUsers);
+		registrationModule.register({ numberOfUsers: data.users.invalidUser.invalidNumberofUsers2 });
+		cy.url().should("contain", "/sign-up");
+		registrationModule.errorMessageEmptyField.should("have.text", errorMessages.invalidNumberOfUsers);
 	});
 
 	it("Invalid  Registration - User doesn't agree with terms & policy", () => {
-		cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user2.email);
-		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
-		cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
-		cy.get(registration.checkbox).click();
-		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.errorMessageEmptyField).should("be.visible").and("have.text", errorMessages.termsAndPrivacy);
+		registrationModule.register({ termsAndPrivacy: "unchecked" });
+		cy.url().should("contain", "/sign-up");
+		registrationModule.errorMessageEmptyField.should("be.visible").and("have.text", errorMessages.termsAndPrivacy);
 	});
 
 	it("Invalid  Registration - Existing account", () => {
-		cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user1.email);
-		cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user1.password);
-		cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
-		cy.get(registration.checkbox).click();
-		cy.get(common.loginRegisterModals.submitButton).click();
-		cy.get(common.loginRegisterModals.existingAccountError).should("be.visible").and("have.text", errorMessages.existingEmail);
-		cy.url().should("not.contain", "/my-organizations");
+		registrationModule.register({ email: data.users.user1.email });
+		cy.url().should("contain", "/sign-up");
+		registrationModule.existingAccountError.should("have.text", errorMessages.existingEmail);
 	});
 
-	// it.only("Valid  Registration", () => {
-	// 	cy.intercept("POST", "api/v2/register").as("registeredUser");
-	// 	cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user2.email);
-	// 	cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
-	// 	cy.get(registration.numberOfUsers).clear().type(data.users.user1.numberOfUsers);
-	// 	cy.get(common.loginRegisterModals.submitButton).click();
-	// 	cy.wait(3000);
-	// 	cy.url().should("contain", "/my-organizations");
-	// 	cy.wait("@registeredUser").then((intercept) => {
-	// 		expect(intercept.response.statusCode).to.eq(200);
-	// 	})
-	// });
+	it("Valid  Registration", () => {
+		cy.intercept("POST", "api/v2/register").as("registeredUser");
+		registrationModule.register({});
+		cy.url().should("contain", "/my-organizations");
+		cy.wait("@registeredUser").then((intercept) => {
+			expect(intercept.response.statusCode).to.eq(200);
+		});
+	});
 
 	// after("Logout", () => {
 	// 	cy.get(common.loginRegisterModals.profileIcon).click({ timeout: 30000 });
