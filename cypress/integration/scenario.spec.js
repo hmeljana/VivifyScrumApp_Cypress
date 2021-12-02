@@ -41,22 +41,13 @@ describe("Api testing", () => {
 			});
 	});
 
-	// it("Delete all Orgs", () => {
-	// 	organizationApi
-	// 		.get({
-	// 			token: userToken,
-	// 			orgId: organizationId,
-	// 		})
-	// 		.then((allOrgs) => {
-	// 			allOrganizations = allOrgs;
-	// 		})
-	// 		.then((allOrganizations) => {
-	// 			allOrganizations.forEach((org) => {
-	// 				org.delete({
-	// 					token: userToken,
-	// 					orgId: organizationId,
-	// 				});
-	// 			});
-	// 		});
-	// });
+	after("05 - Delete all organizations", () => {
+		allOrganizations.forEach((org) =>
+			organizationApi.delete({
+				token: userToken,
+				orgId: org.id,
+				testMessage: "05 - Delete all organizations",
+			})
+		);
+	});
 });
