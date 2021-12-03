@@ -38,6 +38,7 @@
 	},
 
 	"board": {
-		"name1": "Board1"
+		"name1": "Board1",
+		"boardTypeScrum": "scrum_board"
 	}
 }

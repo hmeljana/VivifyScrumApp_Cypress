@@ -1,3 +1,4 @@
 {
-    "baseUrl" : "https://cypress.vivifyscrum-stage.com"
+	"baseUrl": "https://cypress.vivifyscrum-stage.com",
+	"apiUrl": "https://cypress-api.vivifyscrum-stage.com/api/v2"
 }
