@@ -40,5 +40,19 @@
 	"board": {
 		"name1": "Board1",
 		"boardTypeScrum": "scrum_board"
+	},
+	"accounts": {
+		"andrija": {
+			"email": "andrija989@gmail.com",
+			"password": "Cuca5555"
+		},
+		"bojana": {
+			"email": "nikolovskabokica11@gmail.com",
+			"password": "bokica"
+		},
+		"danijela": {
+			"email": "daninani@gmail.com",
+			"password": "Test1234!"
+		}
 	}
 }
