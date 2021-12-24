@@ -6,7 +6,6 @@ describe("Api testing - Organizations", () => {
 	before(() => {
 		userApi.login({ testMessage: "01 - Login before other tests" }).then((token) => {
 			userToken = token;
-			//za koriscenje tokena iz drugog spec-a
 			cy.writeFile("cypress/fixtures/token.json", { tokenAT: token });
 		});
 	});
