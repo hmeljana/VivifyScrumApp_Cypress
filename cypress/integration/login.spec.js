@@ -1,5 +1,4 @@
 /// <reference types="cypress" / >
-import common from "../fixtures/common.json";
 import data from "../fixtures/data.json";
 import authModule from "../models/authModule";
 import errorMessages from "../fixtures/errorMessages.json";

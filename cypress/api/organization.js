@@ -6,7 +6,7 @@ module.exports = {
 		return cy
 			.request({
 				method: "GET",
-				url: "https://cypress-api.vivifyscrum-stage.com/api/v2/organizations-data",
+				url: `${Cypress.config("apiUrl")}/organizations-data`,
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
@@ -20,7 +20,7 @@ module.exports = {
 		return cy
 			.request({
 				method: "POST",
-				url: "https://cypress-api.vivifyscrum-stage.com/api/v2/organizations",
+				url: `${Cypress.config("apiUrl")}/organizations`,
 				body: {
 					name: orgName,
 				},
@@ -45,7 +45,7 @@ module.exports = {
 			.request({
 				failOnStatusCode: false,
 				method: "POST",
-				url: `https://cypress-api.vivifyscrum-stage.com/api/v2/organizations/${orgId}`,
+				url: `${Cypress.config("apiUrl")}/organizations/${orgId}`,
 				body: {
 					passwordOrEmail: password,
 				},

@@ -1,7 +1,5 @@
 /// <reference types = "Cypress" />
 import data from "../fixtures/data.json";
-import sidebar from "./sidebarModule";
-import navigation from "./navigationModule";
 import faker from "faker";
 
 const fakerUser = {

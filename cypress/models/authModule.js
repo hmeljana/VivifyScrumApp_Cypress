@@ -1,7 +1,5 @@
 /// <reference types = "Cypress" />
 import data from "../fixtures/data.json";
-import sidebar from "./sidebarModule";
-import navigation from "./navigationModule";
 
 module.exports = {
 	get forgotPasswordLink() {
@@ -35,6 +33,18 @@ module.exports = {
 	get nonExistingAccountError() {
 		return cy.get(".vs-c-custom-errors > .el-form-item__error");
 	},
+	get goToSignUpLink() {
+		return cy.get("[data-cy=login-sign-up-link]");
+	},
+	get accountSettings() {
+		return cy.get("a[href='/account']");
+	},
+	get profile() {
+		return cy.get("[data-cy=account-profile] > span > div > .vs-c-site-logo");
+	},
+	get logoutButton() {
+		return cy.get(".vs-c-logout");
+	},
 
 	login({ email = data.users.user1.email, password = data.users.user1.password }) {
 		if (email == "" && password == "") {
@@ -60,9 +70,9 @@ module.exports = {
 
 	logout() {
 		cy.intercept("POST", "**api/v2/logout").as("logout");
-		sidebar.profileIcon.should("be.visible").click();
-		sidebar.goToProfileSettings.should("be.visible").click();
-		navigation.logoutButton.should("be.visible").click();
+		this.accountSettings.click();
+		this.profile.click();
+		this.logoutButton.click();
 		cy.wait("@logout").then((intercept) => {
 			expect(intercept.response.statusCode).to.eq(201);
 		});

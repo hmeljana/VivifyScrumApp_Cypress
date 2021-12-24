@@ -1,17 +1,14 @@
 /// <reference types = "cypress" / >
-import loginPage from "../fixtures/login.json";
-import common from "../fixtures/common.json";
-import registration from "../fixtures/register.json";
+import authModule from "../models/authModule";
 import data from "../fixtures/data.json";
 import errorMessages from "../fixtures/errorMessages.json";
-import strings from "../fixtures/strings.json";
 import registrationModule from "../models/registerModule";
 
 describe("Register", () => {
 	beforeEach("Visit url", () => {
 		cy.visit("/");
 		cy.url().should("contain", "cypress.vivifyscrum-stage.com");
-		cy.get(loginPage.goToSignUpLink).click();
+		authModule.goToSignUpLink.click();
 		cy.url().should("contain", "/pricing", { timeout: 3000 });
 		cy.get(" a[title='Growth']").eq(0).click({ force: true });
 	});
@@ -78,29 +75,4 @@ describe("Register", () => {
 			expect(intercept.response.statusCode).to.eq(200);
 		});
 	});
-
-	// after("Logout", () => {
-	// 	cy.get(common.loginRegisterModals.profileIcon).click({ timeout: 30000 });
-	// 	cy.get(common.loginRegisterModals.goToProfileSettings).click({ timeout: 30000 });
-	// 	cy.get(common.loginRegisterModals.logoutButton).click({ timeout: 30000 });
-	// 	cy.url().should("contain", "/login");
-	// 	cy.get(common.loginRegisterModals.modalTitle).should("have.text", strings.modalTitle);
-	// });
-
-	// it("Valid Login with New Account", () => {
-	// 	cy.get(common.loginRegisterModals.emailInput).clear().type(data.users.user2.email);
-	// 	cy.get(common.loginRegisterModals.passwordInput).clear().type(data.users.user2.password);
-	// 	cy.get(loginPage.loginButton).click();
-	// 	cy.url().should("contain", "/my-organizations");
-	// });
-
-	//Ponasa se drugacije kada prolazim manuelno i na testovima
-	//koje pokrene cypress ovaj modal za Account details:
-
-	// it("Adding Account details", () => {
-	// 	cy.get(registration.accountDetails.firstName).type(data.users.user2.name);
-	// 	cy.get(registration.accountDetails.lastName).type(data.users.user2.lastName);
-	// 	cy.get(registration.accountDetails.finishRegistrationButton).click();
-	// 	cy.url().should("contain", "/my-organizations");
-	// });
 });

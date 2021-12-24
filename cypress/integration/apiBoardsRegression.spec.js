@@ -16,7 +16,7 @@ describe("Api testing - Boards", {}, () => {
 		organizationApi
 			.post({
 				token: userToken,
-				testMessage: "02 - create organization",
+				testMessage: "02 - Create organization",
 			})
 			.then((response) => {
 				orgId = response.id;

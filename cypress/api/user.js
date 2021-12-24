@@ -6,7 +6,7 @@ module.exports = {
 			.request({
 				failOnStatusCode: false,
 				method: "POST",
-				url: "https://cypress-api.vivifyscrum-stage.com/api/v2/login",
+				url: `${Cypress.config("apiUrl")}/login`,
 				body: {
 					email: email,
 					password: password,

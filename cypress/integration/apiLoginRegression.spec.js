@@ -1,6 +1,6 @@
 import userApi from "../api/user";
 
-describe("Api testing", () => {
+describe("Api testing - Login", () => {
 	let userToken;
 	it("positive login", () => {
 		userApi.login({ testMessage: "01 - Login before tests" }).then((token) => {
